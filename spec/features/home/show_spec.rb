@@ -1,4 +1,3 @@
-
 feature 'Home page' do
   scenario 'Visit the home page' do
     visit root_path

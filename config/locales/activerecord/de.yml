@@ -1,0 +1,6 @@
+de:
+  activerecord:
+    models:
+      subject:
+        one: Proband
+        other: Probanden
