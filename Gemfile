@@ -11,10 +11,16 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'simple_form' # Forms made easy for Rails
+gem 'font-awesome-sass', '~> 4.7.0'
+gem 'rails-i18n'
+gem 'responders' # A set of Rails responders
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry-remote'
 end
 group :development do
   gem 'web-console', '>= 3.3.0'
