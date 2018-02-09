@@ -12,17 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180207145827) do
 
-  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "subject_id"
-    t.string "code"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_answers_on_subject_id"
-  end
-
   create_table "pana_validation_questionaries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "subject_id"
+    t.integer "page", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "emoji1"
@@ -88,8 +80,6 @@ ActiveRecord::Schema.define(version: 20180207145827) do
     t.string "residence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "page", default: 0
-    t.integer "subjects", default: 1
   end
 
 end

@@ -1,0 +1,12 @@
+.pana_validation_questionary
+  = headline_with_flash
+  p = t('.description')
+  - PanaValidationQuestionary.structure[0].each do |item|
+    .row
+      .col-3.col-md-2
+        = image_tag 'panava_nonverbal/VA1_hi', input_html: {style: 'vertical-align: middle'}
+      .col-6.col-md-8
+        = f.input item, as: :range, label: false, min: 0, max: 100, step: 1, wrapper: :simple
+      .col-3.col-md-2
+        = image_tag 'panava_nonverbal/VA1_lo'
+    hr

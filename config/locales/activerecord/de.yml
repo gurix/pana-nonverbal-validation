@@ -4,3 +4,6 @@ de:
       subject:
         one: Proband
         other: Probanden
+      pana_validation_questionary:
+        one: Umfrage
+        other: Umfragen

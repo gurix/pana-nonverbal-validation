@@ -9,7 +9,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     @subject.save
 
-    respond_with(@subject, location: root_path)
+    respond_with(@subject, location: new_subject_pana_validation_questionary_path(@subject))
   end
 
   private

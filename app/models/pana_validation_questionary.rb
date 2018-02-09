@@ -1,14 +1,37 @@
-class PanaValidationQuestionary < ActiveRecord::Base
+class PanaValidationQuestionary < ApplicationRecord
 
   belongs_to :subject
 
   validates :page, presence: true
 
-  # Validate if items are present
-  10.times  {|i| validates "emoji#{i+1}"     presence: true, if: Proc.new { |q| q.page == 1 } }
-  5.times   {|i| validates "wellbeing#{i+1}" presence: true, if: Proc.new { |q| q.page == 2 } }
-  20.times  {|i| validates "mrs#{i+1}"       presence: true, if: Proc.new { |q| q.page == 3 } }
-  10.times  {|i| validates "panava#{i+1}"    presence: true, if: Proc.new { |q| q.page == 4 } }
-  5.times   {|i| validates "swls#{i+1}"      presence: true, if: Proc.new { |q| q.page == 5 } }
-  3.times   {|i| validates "sam#{i+1}"       presence: true, if: Proc.new { |q| q.page == 6 } }
+  # Define the structure of the questionary to handle validations and strong parameters automatically
+  def self.structure
+    [
+      [*1..10].map { |i| "emoji#{i}" },
+      [*1..5].map { |i| "wellbeing#{i}" },
+      [*1..20].map { |i| "mrs#{i}" },
+      [*1..10].map { |i| "panava#{i}" },
+      [*1..5].map { |i| "swls#{i}" },
+      [*1..3].map { |i| "sam#{i}" }
+    ]
+  end
+
+  # Validate presence for each item
+  self.structure.each_with_index do |page, page_index|
+    page.each do |item|
+      validates(item, presence: true, if: Proc.new { |q| q.page == page_index + 1 })
+    end
+  end
+
+  def self.emoji_mapping
+    {
+      'gj' => [
+        %w(PA3_lo PA1_hi),
+        %w(NA2_lo NA1_hi),
+        %w(PA4_hi PA4_lo3),
+        %w(VA1_lo NA3_lo),
+        %w(VA1_hi VA2_lo),
+      ]
+    }
+  end
 end
