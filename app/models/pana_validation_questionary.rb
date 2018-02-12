@@ -1,5 +1,4 @@
 class PanaValidationQuestionary < ApplicationRecord
-
   belongs_to :subject
 
   validates :page, presence: true
@@ -17,20 +16,20 @@ class PanaValidationQuestionary < ApplicationRecord
   end
 
   # Validate presence for each item
-  self.structure.each_with_index do |page, page_index|
+  structure.each_with_index do |page, page_index|
     page.each do |item|
-      validates(item, presence: true, if: Proc.new { |q| q.page == page_index + 1 })
+      validates(item, presence: true, if: proc { |q| q.page == page_index + 1 })
     end
   end
 
   def self.emoji_mapping
     {
       'gj' => [
-        %w(PA3_lo PA1_hi),
-        %w(NA2_lo NA1_hi),
-        %w(PA4_hi PA4_lo3),
-        %w(VA1_lo NA3_lo),
-        %w(VA1_hi VA2_lo),
+        %w[PA3_lo PA1_hi],
+        %w[NA2_lo NA1_hi],
+        %w[PA4_hi PA4_lo3],
+        %w[VA1_lo NA3_lo],
+        %w[VA1_hi VA2_lo]
       ]
     }
   end

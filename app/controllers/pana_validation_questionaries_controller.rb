@@ -2,7 +2,7 @@ class PanaValidationQuestionariesController < ApplicationController
   respond_to :html
 
   before_action :load_subject
-  before_action :load_pana_validation_questionary, only: [:edit, :update]
+  before_action :load_pana_validation_questionary, only: %i[edit update]
 
   def new
     @pana_validation_questionary = PanaValidationQuestionary.new(subject: @subject)

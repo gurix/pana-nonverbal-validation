@@ -1,6 +1,7 @@
 # Helps managing uniform page title, headline, and flash messages.
 #
-# It assumes that there's always a main `h1` tag (the headline) which identifies the main content of the page (typically this would be the first `h1` tag within the `main` tag), and that this headline should reflect the content of the `title` tag.
+# It assumes that there's always a main `h1` tag (the headline) which identifies the main content of the page (typically this would be the first `h1` tag within
+# the `main` tag), and that this headline should reflect the content of the `title` tag.
 #
 # It furthermore assumes that flash messages are always related to the main content and therefore are displayed right after the headline.
 #
@@ -35,18 +36,23 @@ module PageTitleAndHeadlineHelper
     end
   end
 
+  def flash_classes(name)
+    ['alert', "alert-#{name == 'notice' ? 'success' : 'danger'}"]
+  end
+
+  def translated_flash(name)
+    t "flash.#{name}"
+  end
+
   # Generates the flash messages HTML structure.
   def flash_messages(flash)
     flash.map do |name, message|
-      classes = ['alert', "alert-#{name == 'notice' ? 'success' : 'danger'}"]
-      translated_flash_name = t "flash.#{name}"
+      content_tag :div, class: flash_classes(name) do
+        message = content_tag :p, "#{translated_flash(name)}: #{message}", id: 'flash', class: "flash-#{name}"
 
-      content_tag :div, class: classes do
-        message = content_tag :p, "#{translated_flash_name}: #{message}", id: "flash", class: "flash-#{name}"
-
-        button = content_tag :button, class: 'close', type: 'button', data: {dismiss: 'alert'} do
-                   icon :remove, t('flash.close', name: translated_flash_name)
-                 end
+        button = content_tag :button, class: 'close', type: 'button', data: { dismiss: 'alert' } do
+          icon :remove, t('flash.close', name: translated_flash(name))
+        end
 
         message + button
       end
@@ -66,7 +72,7 @@ module PageTitleAndHeadlineHelper
 
   # Returns the current headline (be sure to call #headline_with_flash first).
   def headline
-    @headline or raise 'No page heading provided! Be sure to call #headline_with_flash first.'
+    @headline || raise('No page heading provided! Be sure to call #headline_with_flash first.')
   end
 
   # Can be used to prefix the title with additional content. Returns the given prefix.
