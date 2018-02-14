@@ -1,4 +1,34 @@
+css:
+  .img_radio_button label img {
+    border: 2px solid white;
+  }
+
+  .img_radio_button label img:hover {
+    border: 2px dashed green;
+  }
+
+  .img_radio_button input[type="radio"]{
+    display: none;
+  }
+
+  .img_radio_button input[type="radio"]:checked + label{
+    border: 2px solid green;
+  }
+
 = headline_with_flash
 p = t('.description')
 - PanaValidationQuestionary.structure[4].each do |item|
-  = f.input item
+  fieldset
+    legend.sr-only
+      = item
+    - f.object.errors.full_messages_for(item).map do |error|
+      .help-block = error
+    .row
+      - [*1..5].each do |value|
+          .col.img_radio_button
+            = f.radio_button item, value
+            label for="pana_validation_questionary_#{item}_#{value}"
+              .sr-only = value
+              = image_tag "sam/#{item}_#{value}", alt: ''
+
+  hr

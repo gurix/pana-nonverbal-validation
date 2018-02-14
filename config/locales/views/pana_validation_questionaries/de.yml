@@ -42,6 +42,14 @@ de:
       page5:
         title: Es folgen fünf Aussagen, denen Sie zustimmen bzw. die Sie ablehnen können.
         description: benutzen Sie die folgende Skala von «trifft überhaupt nicht zu» bis «trifft vollständig zu», um Ihre Zustimmung bzw. Ablehnung zu jeder Aussage zum Ausdruck zu bringen.
+        scale:
+          1: trifft überhaupt nicht zu
+          2: trifft nicht zu
+          3: trifft eher nicht zu
+          4: teils / teils
+          5: trifft eher zu
+          6: trifft zu
+          7: trifft vollständig zu
 
       page6:
         title: Wie fühlten Sie sich in den letzten Tagen?
