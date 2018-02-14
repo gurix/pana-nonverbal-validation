@@ -29,8 +29,8 @@ class PanaValidationQuestionariesController < ApplicationController
   private
 
   def pana_validation_questionary_params
-    # whitelist all fields in the structure of the questionary
-    params.require(:pana_validation_questionary).permit(PanaValidationQuestionary.structure + [:page])
+    # Whitelist all columns by default
+    params.require(:pana_validation_questionary).permit(PanaValidationQuestionary.column_names)
   end
 
   def load_subject

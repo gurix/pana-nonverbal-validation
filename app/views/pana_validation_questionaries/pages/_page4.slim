@@ -1,4 +1,23 @@
 = headline_with_flash
 p = t('.description')
-- PanaValidationQuestionary.structure[3].each do |item|
-  = f.input item
+ruby:
+  questions = t('activerecord.attributes.pana_validation_questionary').select { |word| word.to_s =~ /^pnv/ }
+
+- questions.each do |item|
+  fieldset
+    .row
+      .col-lg-2
+        .bipolar-left
+          = item.last.split("|").first
+        - f.object.errors.full_messages_for(item.first).map do |error|
+          .help-block = error
+      .col-lg-8
+        .row
+          - t('.scale').each do |value ,text|
+            .radio_button.col-lg
+              .text= f.radio_button item.first, value
+              label for="pana_validation_questionary_#{item.first}_#{value}" = text
+      .col-lg-2
+        .bipolar-right
+          = item.last.split("|").last
+  hr
