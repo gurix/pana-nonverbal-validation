@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212125428) do
+ActiveRecord::Schema.define(version: 20180214134225) do
 
   create_table "pana_validation_questionaries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "subject_id"
@@ -79,6 +79,26 @@ ActiveRecord::Schema.define(version: 20180212125428) do
     t.integer "NA3_lo__NA3_hi"
     t.integer "NA4_hi__NA4_lo"
     t.integer "PA2_lo__PA2_hi5"
+    t.integer "pan1"
+    t.integer "pan2"
+    t.integer "pan3"
+    t.integer "pan4"
+    t.integer "pan5"
+    t.integer "pan6"
+    t.integer "pan7"
+    t.integer "pan8"
+    t.integer "pan9"
+    t.integer "pan10"
+    t.integer "pan11"
+    t.integer "pan12"
+    t.integer "pan13"
+    t.integer "pan14"
+    t.integer "pan15"
+    t.integer "pan16"
+    t.integer "pan17"
+    t.integer "pan18"
+    t.integer "pan19"
+    t.integer "pan20"
     t.index ["subject_id"], name: "index_pana_validation_questionaries_on_subject_id"
   end
 

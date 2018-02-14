@@ -54,3 +54,17 @@ de:
       page6:
         title: Wie fühlten Sie sich in den letzten Tagen?
         description: Kreuzen Sie auf jeder Zeile das Bild an, was Ihren Gefühlen am ehesten entspricht.
+
+      page7:
+        title: Dieser Fragebogen enthält eine Reihe von Wörtern, die unterschiedliche Gefühle und Empfindungen beschreiben.
+        description: Lesen Sie jedes Wort und tragen Sie dann in die Skala neben jedem Wort die Intensität ein. Sie haben die Möglichkeit, zwischen fünf Abstufungen zu wählen. Geben Sie bitte an, wie Sie sich in den letzten Tagen gefühlt haben.
+        scale:
+          1: gar nicht
+          2: ein bisschen
+          3: einigermassen
+          4: erheblich
+          5: äusserst
+
+      page8:
+        title: Herzlichen Dank für Ihre Teilnahme!
+        description: Sie haben die Umfrage abgeschlossen können Ihr Browserfenster nun schliessen.

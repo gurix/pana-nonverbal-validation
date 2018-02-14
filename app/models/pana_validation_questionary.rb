@@ -54,7 +54,8 @@ class PanaValidationQuestionary < ApplicationRecord
       [*1..20].map { |i| "mrs#{i}" },
       [*1..10].map { |i| "pnv#{i}" },
       [*1..5].map { |i| "swl#{i}" },
-      [*1..3].map { |i| "sam#{i}" }
+      [*1..3].map { |i| "sam#{i}" },
+      [*1..20].map { |i| "pan#{i}" }
     ]
   end
 
