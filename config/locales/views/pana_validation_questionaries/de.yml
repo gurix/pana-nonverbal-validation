@@ -20,12 +20,12 @@ de:
         title: Persönlichkeit
         description_html: <p>Im Folgenden finden Sie eine Anzahl von Eigenschaftswörtern, die in Form von Gegensatzpaaren angeordnet sind. Bitte versuchen Sie mit Hilfe dieser Liste zu beschreiben, <strong>wie Sie selber im Allgemeinen sind.</strong></p><p>Bitte versuchen Sie so spontan und offen als möglich zu antworten - auch wenn manche Eigenschaftswörter vielleicht etwas "direkt" formuliert sind und gewisse Gegensätzefür Sie nicht ganz stimmen.</p>
         scale:
-          5: sehr
-          4: ziemlich
+          6: sehr
+          5: ziemlich
+          4: eher
           3: eher
-          2: eher
-          1: ziemlich
-          0: sehr
+          2: ziemlich
+          1: sehr
 
       page4:
         title: Wie fühlten Sie sich in den letzten Tagen?

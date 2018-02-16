@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :subject do
     age 42
-    gender "f"
+    gender 'f'
     education 1
-    residence "ch"
+    residence 'ch'
+    group 'gj'
   end
 end
