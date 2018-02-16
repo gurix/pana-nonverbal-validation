@@ -75,4 +75,8 @@ class PanaValidationQuestionary < ApplicationRecord
   def self.eomji_column_name(pair)
     pair.join('__')
   end
+
+  def self.valid_group?(group)
+    MAPPING.keys.include? group
+  end
 end
