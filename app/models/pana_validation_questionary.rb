@@ -62,17 +62,17 @@ class PanaValidationQuestionary < ApplicationRecord
   # Validate presence for each item
   structure.each_with_index do |page, page_index|
     page.each do |item|
-      validates(item, presence: true, if: proc { |q| q.page == (page_index + 2)})
+      validates(item, presence: true, if: proc { |q| q.page == (page_index + 2) })
     end
   end
 
   def self.calculate_emoji_columns
     PanaValidationQuestionary::MAPPING.values.map do |set|
-      set.map  { |item| eomji_column_name(item) }
+      set.map { |item| eomji_column_name(item) }
     end.flatten.uniq
   end
 
   def self.eomji_column_name(pair)
-    pair.join("__")
+    pair.join('__')
   end
 end
