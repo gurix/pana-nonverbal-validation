@@ -12,7 +12,7 @@ require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 set :application_name, 'pana-nonverbal-validation'
 set :domain, 'zhawpsychologie2.nine.ch'
 set :deploy_to, '/home/www-data/panava.persoenlichkeitsdiagnostik.ch'
-set :repository, 'git://github.com:gurix/pana-nonverbal-validation.git'
+set :repository, 'git://github.com/gurix/pana-nonverbal-validation.git'
 set :branch, 'master'
 
 # Optional settings:

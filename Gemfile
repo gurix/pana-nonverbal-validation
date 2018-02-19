@@ -4,25 +4,25 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.4.1'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'coffee-rails', '~> 4.2'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'high_voltage'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 gem 'mina' # Really fast deployer and server automation tool.
+gem 'mysql2', '~> 0.3.18'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 gem 'rails-i18n'
 gem 'responders' # A set of Rails responders
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form' # Forms made easy for Rails
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
-
-gem 'bootstrap', '~> 4.0.0.alpha6'
-gem 'high_voltage'
-gem 'jquery-rails'
-gem 'mysql2', '~> 0.3.18'
 gem 'slim-rails'
+gem 'therubyracer'
+gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'better_errors'
