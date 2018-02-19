@@ -6,4 +6,4 @@ p = t('.description')
   = f.input :education, as: :radio_buttons, collection: t('.educations'), label_method: :second, value_method: :first
   = f.input :residence, as: :radio_buttons, collection: t('.residences'), label_method: :second, value_method: :first
   = f.input :group, as: :hidden
-  = f.submit class: 'btn btn-primary', value: t('shared.next')
+  = f.submit value: t('shared.next')

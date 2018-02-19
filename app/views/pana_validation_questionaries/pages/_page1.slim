@@ -1,5 +1,5 @@
 .pana_validation_questionary
-  = headline_with_flash
+  .without-success-flash = headline_with_flash
   p = t('.description')
 
   - PanaValidationQuestionaryStructure::MAPPING[@subject.group].each do |pair|

@@ -1,5 +1,4 @@
-// import the CSS framework
-// Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+@import "variables";
 @import "bootstrap";
 
 // make all images responsive by default
@@ -7,39 +6,14 @@ img {
   @extend .img-fluid;
   margin: 0 auto;
 }
-// override for the 'Home' navigation link
-.navbar-brand {
-  font-size: inherit;
-  }
 
-// THESE ARE EXAMPLES YOU CAN MODIFY
-// create your own classes
-// to make views framework-neutral
-.column {
-  @extend .col-md-6;
-  text-align: center;
-}
-.form {
-  @extend .col-md-6;
-}
-.form-centered {
-  @extend .col-md-6;
-  text-align: center;
-}
-.submit {
+// style the submit button by default
+input[type=submit] {
   @extend .btn;
   @extend .btn-primary;
-  @extend .btn-lg;
 }
 
-// apply styles to HTML elements
-// to make views framework-neutral
 main {
   @extend .container;
   margin-top: 30px; // accommodate the navbar
-}
-
-section {
-  @extend .row;
-  margin-top: 20px;
 }

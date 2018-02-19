@@ -15,3 +15,8 @@
  */
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+// We don't use the sucess alert for sighted people here
+.pana_validation_questionaries #headline .alert-success {
+  @extend .sr-only;
+}
