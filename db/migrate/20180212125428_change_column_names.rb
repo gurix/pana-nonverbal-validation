@@ -6,7 +6,7 @@ class ChangeColumnNames < ActiveRecord::Migration[5.1]
 
     10.times {|i| remove_column :pana_validation_questionaries, "emoji#{i+1}" }
 
-    PanaValidationQuestionary::calculate_emoji_columns.each do |name|
+    PanaValidationQuestionary.calculate_emoji_columns.each do |name|
       add_column :pana_validation_questionaries, name, :integer
     end
   end
