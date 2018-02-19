@@ -5,6 +5,6 @@ class HomeController < ApplicationController
 
   # If no group is assigned, a random one will be choosen
   def assign_group
-    @group = params[:group] || PanaValidationQuestionary::MAPPING.keys.sample
+    @group = params[:group] || PanaValidationQuestionaryStructure::MAPPING.keys.sample
   end
 end

@@ -2,12 +2,12 @@
   = headline_with_flash
   p = t('.description')
 
-  - PanaValidationQuestionary::MAPPING[@subject.group].each do |pair|
+  - PanaValidationQuestionaryStructure::MAPPING[@subject.group].each do |pair|
     .row
       .col-3.col-md-2
         = image_tag "panava_nonverbal/#{pair.first}", input_html: {style: 'vertical-align: middle'}
       .col-6.col-md-8
-        = f.input PanaValidationQuestionary::eomji_column_name(pair), as: :range, label: false, min: 0, max: 100, step: 1, wrapper: :simple
+        = f.input PanaValidationQuestionaryStructure::eomji_column_name(pair), as: :range, label: false, min: 0, max: 100, step: 1, wrapper: :simple
       .col-3.col-md-2
         = image_tag "panava_nonverbal/#{pair.last}"
     hr

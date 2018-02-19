@@ -23,6 +23,6 @@ class SubjectsController < ApplicationController
   # Ensure each subject is in a group and the choosen group is available
   def check_group
     raise 'missing group' unless @subject.group
-    raise "#{@subject.group} is not available" unless PanaValidationQuestionary.valid_group? @subject.group
+    raise "#{@subject.group} is not available" unless PanaValidationQuestionaryStructure.valid_group? @subject.group
   end
 end

@@ -1,4 +1,4 @@
-- if PanaValidationQuestionary.valid_group? @group
+- if PanaValidationQuestionaryStructure.valid_group? @group
   p Liebe/r Befragungsteilnehmer/in
   p Wir entwickeln eine neue Skala zur Erfassung positiver und negativer Aktivierung mittels Emojis. Positive und negative Aktivierung umfasst unterschiedliche Emotionen wie Begeisterung, Nervosität, Stress, Langeweile oder voller Energie sein.
   p Mit dieser Befragung testen wir die neue Skala im Vergleich zu anderen Skalen. <strong>Aus diesem Grund werden viele Fragen ähnlich tönen.</strong>
@@ -13,4 +13,4 @@
 
   p.text-center = link_to 'Umfrage starten', new_subject_path(group: @group) , class: 'btn btn-lg btn-primary font-weight-bold'
 - else
-  .alert.alert-danger Die Gruppe «#{@group}» ist nicht zulässig. Folgende Gruppen sind verfügbar: #{PanaValidationQuestionary::MAPPING.keys.join(', ')}
+  .alert.alert-danger Die Gruppe «#{@group}» ist nicht zulässig. Folgende Gruppen sind verfügbar: #{PanaValidationQuestionaryStructure::MAPPING.keys.join(', ')}

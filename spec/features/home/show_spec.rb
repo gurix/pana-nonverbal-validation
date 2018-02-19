@@ -1,6 +1,6 @@
 feature 'Home page' do
   scenario 'Visiting the home page assigns randomly a group' do
-    stub_const("PanaValidationQuestionary::MAPPING", abc: [:a,:b])
+    stub_const("PanaValidationQuestionaryStructure::MAPPING", abc: [:a,:b])
 
     visit root_path
     expect(page).to have_content 'Entwicklung einer Emoji-Skala zur Erfassung positiver und negativer Aktivierung'

@@ -1,7 +1,7 @@
 feature 'PanaValidationQuestionary' do
 
   scenario 'Create a new pana_validation_questionary' do
-    PanaValidationQuestionary::MAPPING.keys.each do | group |
+    PanaValidationQuestionaryStructure::MAPPING.keys.each do | group |
 
       subject = create :subject, group: group
 
@@ -10,14 +10,14 @@ feature 'PanaValidationQuestionary' do
       # Page 1
       expect(page).to have_selector 'h1', text: 'Wie fühlten Sie sich in den letzten Tagen?'
 
-      PanaValidationQuestionary::MAPPING[group].each do |pair|
-        fill_in "pana_validation_questionary_#{PanaValidationQuestionary.eomji_column_name(pair)}", with: 42
+      PanaValidationQuestionaryStructure::MAPPING[group].each do |pair|
+        fill_in "pana_validation_questionary_#{PanaValidationQuestionaryStructure.eomji_column_name(pair)}", with: 42
       end
 
       click_button 'Weiter'
 
-      PanaValidationQuestionary::MAPPING[group].each do |pair|
-        expect(subject.reload.pana_validation_questionary[PanaValidationQuestionary.eomji_column_name(pair)]).to eq 42
+      PanaValidationQuestionaryStructure::MAPPING[group].each do |pair|
+        expect(subject.reload.pana_validation_questionary[PanaValidationQuestionaryStructure.eomji_column_name(pair)]).to eq 42
       end
       expect(subject.reload.pana_validation_questionary.page).to eq 1
 
