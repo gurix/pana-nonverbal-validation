@@ -1,7 +1,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'pana_validation_questionary_structure'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
