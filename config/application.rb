@@ -8,6 +8,9 @@ require 'pana_validation_questionary_structure'
 Bundler.require(*Rails.groups)
 
 module PanaNonverbalValidation
+  # Load lib path
+  config.eager_load_paths << Rails.root.join('lib') # https://github.com/rails/rails/issues/13142#issuecomment-275492070
+
   class Application < Rails::Application
 
     config.generators do |g|
