@@ -1,11 +1,3 @@
-Rails.application.config.middleware.use ExceptionNotification::Rack,
-  email: {
-    deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
-    email_prefix: "[PANAVA-NONVERBAL] ",
-    sender_address: Rails.application.secrets.smtp_user,
-    exception_recipients: Rails.application.secrets.smtp_user
-}
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -110,3 +102,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    email_prefix: "[PANAVA-NONVERBAL] ",
+    sender_address: Rails.application.secrets.smtp_user,
+    exception_recipients: Rails.application.secrets.smtp_user
+}
