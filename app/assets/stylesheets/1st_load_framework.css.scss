@@ -11,6 +11,7 @@ img {
 input[type=submit] {
   @extend .btn;
   @extend .btn-primary;
+  @extend .btn-block;
 }
 
 main {
