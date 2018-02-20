@@ -5,9 +5,9 @@
   - PanaValidationQuestionaryStructure::MAPPING[@subject.group].each do |pair|
     .row
       .col-3.col-md-2
-        = image_tag "panava_nonverbal/#{pair.first}", input_html: {style: 'vertical-align: middle'}
+        = image_tag "panava_nonverbal/#{pair.first}.png", input_html: {style: 'vertical-align: middle'}
       .col-6.col-md-8
         = f.input PanaValidationQuestionaryStructure::eomji_column_name(pair), as: :range, label: false, min: 0, max: 100, step: 1, wrapper: :simple
       .col-3.col-md-2
-        = image_tag "panava_nonverbal/#{pair.last}"
+        = image_tag "panava_nonverbal/#{pair.last}.png"
     hr
