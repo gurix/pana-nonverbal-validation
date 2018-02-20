@@ -14,4 +14,7 @@
 //= require popper
 //= require rails-ujs
 //= require bootstrap-sprockets
+//= require ahoy
 //= require_tree .
+
+ahoy.trackView();

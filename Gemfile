@@ -4,7 +4,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.4.1'
+
+gem 'ahoy_matey' # Ahoy provides a solid foundation to track visits and events in Ruby, JavaScript, and native apps.
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'browser' # Do some browser detection with Ruby. Includes ActionController integration.
 gem 'coffee-rails', '~> 4.2'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'high_voltage'
