@@ -1,11 +1,23 @@
-@media (min-width: 960px) {
+@media (min-width: 992px) {
   form {
       .col-sm-3.control-label {
       text-align: right;
     }
-    
+
     .radio_button {
+      display: block;
+      min-width: 108px;
       text-align: center !important;
+      label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+      }
     }
 
     .bipolar-left {
@@ -14,10 +26,12 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 992px) {
   form {
-    .radio_button > * {
-      display: inline;
+    .radio_button {
+      * {
+       display: inline;
+      }
     }
   }
 }

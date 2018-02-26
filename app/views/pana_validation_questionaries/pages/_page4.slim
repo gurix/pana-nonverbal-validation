@@ -3,7 +3,15 @@ p = t('.description')
 ruby:
   questions = t('activerecord.attributes.pana_validation_questionary').select { |word| word.to_s =~ /^pnv/ }
 
-- questions.each do |item|
+- questions.each_with_index do |item, index|
+  - if index % 10 == 0
+    .row aria-hidden="true"
+      .col-lg-2.d-none.d-lg-block
+      .col-lg-8.d-none.d-lg-block
+        .row
+          - t('.scale').each do |value ,text|
+            .col-lg.radio_button
+              strong = text
   fieldset
     .row
       .col-lg-2

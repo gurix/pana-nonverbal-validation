@@ -20,3 +20,8 @@
 .pana_validation_questionaries #headline .alert-success {
   @extend .sr-only;
 }
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
