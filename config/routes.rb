@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :subjects do
     resource :pana_validation_questionary
   end
+
+  get '/export', to: 'export#show'
 end
