@@ -1,7 +1,12 @@
+def range_select(name, value)
+  selector = %-input[type=range][name=\\"#{name}\\"]-
+  script = %-$("#{selector}").val(#{value}).trigger('change')-
+  page.execute_script(script)
+end
 feature 'PanaValidationQuestionary' do
 
-  scenario 'Create a new pana_validation_questionary' do
-    PanaValidationQuestionaryStructure::MAPPING.keys.each do | group |
+  scenario 'Create a new questionary' do
+    PanaValidationQuestionaryStructure::MAPPING.each_key do | group |
 
       subject = create :subject, group: group
 
@@ -11,7 +16,7 @@ feature 'PanaValidationQuestionary' do
       expect(page).to have_selector 'h1', text: 'Wie fühlten Sie sich in den letzten Tagen?'
 
       PanaValidationQuestionaryStructure::MAPPING[group].each do |pair|
-        fill_in "pana_validation_questionary_#{PanaValidationQuestionaryStructure.eomji_column_name(pair)}", with: 42
+        find("#pana_validation_questionary_#{PanaValidationQuestionaryStructure.eomji_column_name(pair)}", visible: :all).set 42
       end
 
       click_button 'Weiter'
@@ -88,5 +93,27 @@ feature 'PanaValidationQuestionary' do
         expect(subject.reload.pana_validation_questionary["sam#{i+1}"]).to eq i+1
       end
     end
+  end
+
+  scenario 'The sllider to rate emojis has be to touched at least one time', js: true do
+    subject = create :subject
+
+    visit new_subject_pana_validation_questionary_path(subject)
+
+    click_button 'Weiter'
+
+    expect(page).to have_content 'muss ausgefüllt werden'
+    expect(subject.reload.pana_validation_questionary).to be nil
+
+    PanaValidationQuestionaryStructure::MAPPING[subject.group].each do |pair|
+      range_select PanaValidationQuestionaryStructure.eomji_column_name(pair), 42 #fill_in "#{PanaValidationQuestionaryStructure.eomji_column_name(pair)}", with: 42
+    end
+
+    click_button 'Weiter'
+
+    PanaValidationQuestionaryStructure::MAPPING[subject.group].each do |pair|
+      expect(subject.reload.pana_validation_questionary[PanaValidationQuestionaryStructure.eomji_column_name(pair)]).to eq 42
+    end
+    expect(subject.reload.pana_validation_questionary.page).to eq 1
   end
 end
