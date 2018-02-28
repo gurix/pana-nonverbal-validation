@@ -11,7 +11,7 @@ class PanaValidationQuestionaryStructure
     'ms' => [
       %w[PA1_lo PA1_hi],
       %w[NA3_lo NA2_hi],
-      %w[PA3_hi PA4_lo],
+      %w[PA3_hi PA3_lo],
       %w[NA1_hi NA1_lo],
       %w[VA2_hi VA2_lo]
     ],
