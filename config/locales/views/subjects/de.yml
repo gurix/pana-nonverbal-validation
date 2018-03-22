@@ -20,7 +20,7 @@ de:
         ch: Schweiz
         de: Deutschland
         at: Österreich
-        de: Anderes
+        others: Anderes
 
   simple_form:
     labels:

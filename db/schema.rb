@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220100545) do
+ActiveRecord::Schema.define(version: 20180228143911) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "visit_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20180220100545) do
     t.integer "VA1_hi__VA2_lo"
     t.integer "PA1_lo__PA1_hi"
     t.integer "NA3_lo__NA2_hi"
-    t.integer "PA3_hi__PA4_lo"
+    t.integer "PA3_hi__PA3_lo"
     t.integer "NA1_hi__NA1_lo"
     t.integer "VA2_hi__VA2_lo"
     t.integer "VA1_hi__VA1_lo"
