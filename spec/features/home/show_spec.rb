@@ -18,4 +18,11 @@ feature 'Home page' do
     expect(page).not_to have_link 'Umfrage starten', href: new_subject_path(group: 'ganja')
     expect(page).to have_content 'Die Gruppe «ganja» ist nicht zulässig. Folgende Gruppen sind verfügbar: gj, ms, sb1, sb2'
   end
+
+  scenario 'Visit homepage including a tic code inlcuding this code to start the questionary' do
+    stub_const("PanaValidationQuestionaryStructure::MAPPING", abc: [:a,:b])
+
+    visit root_path(tic: 'LookingForFreedom')
+    expect(page).to have_link 'Umfrage starten', href: new_subject_path(group: 'abc', tic: 'LookingForFreedom')
+  end
 end

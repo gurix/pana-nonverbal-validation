@@ -53,6 +53,7 @@ group :development, :test do
   gem 'pry-remote'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'fuubar'
 end
 
 group :test do

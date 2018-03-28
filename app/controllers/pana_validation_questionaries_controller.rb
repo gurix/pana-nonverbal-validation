@@ -1,4 +1,7 @@
 class PanaValidationQuestionariesController < ApplicationController
+
+  RESPONDI_RETURN_CODES = { gj: 917489, ms: 917509, sb1: 917528, sb2: 917547 }
+
   respond_to :html
 
   before_action :load_subject
@@ -17,15 +20,19 @@ class PanaValidationQuestionariesController < ApplicationController
 
   def edit
     @pana_validation_questionary.page += 1
+    return observable_redirect_to(respondi_complete_url) if @pana_validation_questionary.page == 8 && @subject.tic.present?
   end
 
   def update
     @pana_validation_questionary.update_attributes(pana_validation_questionary_params)
-
     respond_with(@pana_validation_questionary, location: edit_subject_pana_validation_questionary_path(@subject))
   end
 
   private
+
+  def respondi_complete_url
+    "https://mingle.respondi.com/s/#{RESPONDI_RETURN_CODES[@subject.group]}/ospe.php3?c_0002=1&return_tic=#{@subject.tic}"
+  end
 
   def pana_validation_questionary_params
     # Whitelist all columns by default

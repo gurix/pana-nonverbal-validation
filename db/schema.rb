@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228143911) do
+ActiveRecord::Schema.define(version: 20180328122304) do
 
   create_table "ahoy_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "visit_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20180228143911) do
     t.string "user_agent"
     t.text "accept_language"
     t.integer "visit_id"
+    t.string "tic"
   end
 
   create_table "visits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

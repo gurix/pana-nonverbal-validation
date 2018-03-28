@@ -5,6 +5,7 @@ class SubjectsController < ApplicationController
   def new
     @subject = Subject.new
     @subject.group = params[:group]
+    @subject.tic = params[:tic]
     check_group
   end
 
@@ -18,7 +19,7 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:age, :gender, :education, :residence, :group)
+    params.require(:subject).permit(:age, :gender, :education, :residence, :group, :tic)
   end
 
   # Ensure each subject is in a group and the choosen group is available
