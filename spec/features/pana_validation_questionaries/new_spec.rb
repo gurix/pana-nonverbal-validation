@@ -122,8 +122,8 @@ feature 'PanaValidationQuestionary' do
 
       standard_questionary(subject)
 
-      url = "https://mingle.respondi.com/s/#{PanaValidationQuestionariesController::RESPONDI_RETURN_CODES[group]}/ospe.php3?c_0002=1&return_tic=#{subject.tic}"
-      expect(page).to eq have_content "If this wasn't an integration test, you'd be redirected to: #{url}"
+      url = "https://mingle.respondi.com/s/#{PanaValidationQuestionariesController::RESPONDI_RETURN_CODES[group.to_sym]}/ospe.php3?c_0002=1&return_tic=#{subject.tic}"
+      expect(page).to have_content "If this wasn't a test, you'd be redirected to: #{url}"
 
       expect(page).not_to have_content 'Herzlichen Dank für Ihre Teilnahme!'
     end

@@ -31,7 +31,7 @@ class PanaValidationQuestionariesController < ApplicationController
   private
 
   def respondi_complete_url
-    "https://mingle.respondi.com/s/#{RESPONDI_RETURN_CODES[@subject.group]}/ospe.php3?c_0002=1&return_tic=#{@subject.tic}"
+    "https://mingle.respondi.com/s/#{RESPONDI_RETURN_CODES[@subject.group.to_sym]}/ospe.php3?c_0002=1&return_tic=#{@subject.tic}"
   end
 
   def pana_validation_questionary_params
