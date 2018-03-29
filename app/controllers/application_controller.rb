@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
       password == Rails.application.secrets.export_password
     end
   end
+
+  private
+
+  def observable_redirect_to(url)
+    if Rails.env.test?
+      render plain: "If this wasn't a test, you'd be redirected to: #{url}"
+    else
+      redirect_to url
+    end
+  end
 end

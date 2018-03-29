@@ -10,8 +10,8 @@ feature 'Subject' do
   scenario 'Create a new subject', js: true do
     visit root_path
     sleep 1
-    
-    visit new_subject_path(group: 'gj')
+
+    visit new_subject_path(group: 'gj', tic: 'LookingForFreedom')
 
     expect(page).to have_content 'Demographische Angaben'
 
@@ -28,5 +28,6 @@ feature 'Subject' do
     expect(subj.visit).to be_valid
     expect(subj.user_agent).to have_content 'Mozilla/5.0'
     expect(subj.accept_language.first.name).to eq 'German'
+    expect(subj.tic).to eq 'LookingForFreedom'
   end
 end
