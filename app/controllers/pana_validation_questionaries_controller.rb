@@ -1,6 +1,5 @@
 class PanaValidationQuestionariesController < ApplicationController
-
-  RESPONDI_RETURN_CODES = { gj: 917489, ms: 917509, sb1: 917528, sb2: 917547 }
+  RESPONDI_RETURN_CODES = { gj: 917_489, ms: 917_509, sb1: 917_528, sb2: 917_547 }.freeze
 
   respond_to :html
 

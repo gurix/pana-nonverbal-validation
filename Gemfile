@@ -50,10 +50,10 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'fuubar'
   gem 'pry-remote'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'fuubar'
 end
 
 group :test do
