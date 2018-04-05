@@ -15,6 +15,17 @@ css:
     border: 2px solid green;
   }
 
+javascript:
+  // for keybord only users let them navigate with enter or space key
+  function imageSelected(evt) {
+    if (evt.type=="click" ||
+        evt.keyCode == 32 ||
+        evt.keyCode == 13) {
+        var ref = evt.target != null ? evt.target : evt.srcElement;
+        $(ref).click();
+    }
+  }
+
 = headline_with_flash
 p = t('.description')
 - PanaValidationQuestionaryStructure.structure[4].each do |item| # TODO: is this correct?
@@ -27,7 +38,7 @@ p = t('.description')
       - [*1..5].each do |value|
           .col.img_radio_button
             = f.radio_button item, value
-            label for="pana_validation_questionary_#{item}_#{value}"
+            label for="pana_validation_questionary_#{item}_#{value}" role='button' tabindex='0' onkeydown="imageSelected(event)"
               .sr-only = "#{item}_#{value}"
               = image_tag "sam/#{item}_#{value}.png", alt: ''
 
