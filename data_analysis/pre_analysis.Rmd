@@ -35,9 +35,10 @@ pie(table(droplevels(completed$os)), main="Operating System")
 plot(completed$screen_width, completed$screen_height, main="Screen Resolution")
 ```
 
-### Speed
+### Duration
 ```{r}
-boxplot(as.numeric(difftime(completed$updated_at, completed$started_at)), main="Speed in Minutes")
+
+boxplot(completed$duration, main="Speed in Minutes", ylim=c(0,30))
 ```
 
 ### Age and Gender
