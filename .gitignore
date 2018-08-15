@@ -85,3 +85,4 @@ pickle-email-*.html
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+data_analysis/output
