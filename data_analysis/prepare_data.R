@@ -1,6 +1,9 @@
 # Read data
 raw_data <- read.csv('data/201804111738.csv')
 
+file.copy('data/201804111738.csv', 'output/raw_data_201804111738.csv')
+file.copy('prepare_data.R', 'output/prepare_data.R')
+
 # Create output directory
 dir.create('output', TRUE)
 
@@ -44,33 +47,36 @@ completed$NA4_lo__NA4_hi <- 100 - completed$NA4_hi__NA4_lo
 #   3: eher
 #   2: ziemlich
 #   1: sehr
-# R mrs1: gesprächig | schweigsam
-# mrs2: reizbar | gutmütig
-# R mrs3: gründlich | unsorgfältig
+# mrs1: gesprächig | schweigsam
+# R mrs2: reizbar | gutmütig
+# mrs3: gründlich | unsorgfältig
 # R mrs4: verletzlich | robust
-# R mrs5: künstlerisch | unkünstlerisch
-# mrs6: zurückhaltend | kontaktfreudig
-# R mrs7: nachsichtig | barsch
-# mrs8: ungeordnet | geordnet
+# mrs5: künstlerisch | unkünstlerisch
+# R mrs6: zurückhaltend | kontaktfreudig
+# mrs7: nachsichtig | barsch
+# R mrs8: ungeordnet | geordnet
 # mrs9: selbstzufrieden | selbstmitleidig
-# mrs10: unkreativ | kreativ
+# R mrs10: unkreativ | kreativ
 # mrs11: anschlussbedürftig | einzelgängerisch # Nicht in MRS-30 enthalten!
-# mrs12: selbstsüchtig | selbstlos
+# R mrs12: selbstsüchtig | selbstlos
 # mrs13: übergenau | ungenau # Nicht in MRS-30 enthalten!
 # R mrs14: überempfindlich | entspannt
 # mrs15: originell | konventionell # Nicht in MRS-30 enthalten!
-# mrs16: zurückgezogen | gesellig
-# R mrs17: friedfertig | streitsüchtig
-# mrs18: nachlässig | gewissenhaft
+# R mrs16: zurückgezogen | gesellig
+# mrs17: friedfertig | streitsüchtig
+# R mrs18: nachlässig | gewissenhaft
 # mrs19: gefühlsstabil | labil
-# mrs20: phantasielos | phantasievoll
-completed$mrs1r <- 7 - completed$mrs1 # e1
-completed$mrs3r <- 7 - completed$mrs3 # g1
-completed$mrs4r <- 7 - completed$mrs4 # n1
-completed$mrs5r <- 7 - completed$mrs5 # k1
-completed$mrs7r <- 7 - completed$mrs7 # v2
-completed$mrs14r <- 7 - completed$mrs14 # n3
-completed$mrs17r <- 7 - completed$mrs17 # v4
+# R mrs20: phantasielos | phantasievoll
+completed$mrs6r <- 7 - completed$mrs6
+completed$mrs16r <- 7 - completed$mrs16
+completed$mrs2r <- 7 - completed$mrs2
+completed$mrs12r <- 7 - completed$mrs12
+completed$mrs8r <- 7 - completed$mrs8
+completed$mrs18r <- 7 - completed$mrs18
+completed$mrs4r <- 7 - completed$mrs4
+completed$mrs14r <- 7 - completed$mrs14
+completed$mrs10r <- 7 - completed$mrs10
+completed$mrs20r <- 7 - completed$mrs20
 
 # Recode PANAVA
 # According Kurzskalen zur Erfassung der Positiven Aktivierung, NegativenAktivierung und Valenz in Experience Sampling Studien (PANAVA-KS) Schallberger 2005
@@ -152,9 +158,101 @@ completed$pnv10r <- 8 - completed$pnv10
 # pan19: durcheinander
 # pan20: ängstlich
 
+# Aggregate data
+completed$who <- rowMeans(completed[,grepl('who',names(completed))])
+completed$swl <- rowMeans(completed[,grepl('swl',names(completed))])
+
+completed$mrsEX <- rowMeans(completed[,c('mrs1','mrs6r', 'mrs11', 'mrs16r')])
+completed$mrsVE <- rowMeans(completed[,c('mrs2r','mrs7', 'mrs12r', 'mrs17')])
+completed$mrsGE <- rowMeans(completed[,c('mrs3','mrs8r', 'mrs13', 'mrs18r')])
+completed$mrsEM <- rowMeans(completed[,c('mrs4r','mrs9', 'mrs14r', 'mrs19')])
+completed$mrsKU <- rowMeans(completed[,c('mrs5','mrs10r', 'mrs15', 'mrs20r')])
+
+completed$pnvPA <- rowMeans(completed[,c('pnv2r','pnv4', 'pnv7', 'pnv9r')])
+completed$pnvNA <- rowMeans(completed[,c('pnv3r','pnv5', 'pnv8', 'pnv10r')])
+completed$pnvVA <- rowMeans(completed[,c('pnv1r','pnv6')])
+
+completed$EMJ_PA <- rowMeans(completed[,c('PA1_lo__PA1_hi','PA2_lo__PA2_hi1', 'PA3_lo__PA3_hi', 'PA4_lo__PA4_hi')])
+completed$EMJ_NA <- rowMeans(completed[,c('NA1_lo__NA1_hi','NA2_lo__NA2_hi', 'NA3_lo__NA3_hi', 'NA4_lo__NA4_hi')])
+completed$EMJ_VA <- rowMeans(completed[,c('VA1_lo__VA1_hi','VA2_lo__VA2_hi')])
+
+completed$PANAS_PA <- rowMeans(completed[,c('pan1','pan3', 'pan4', 'pan6', 'pan10', 'pan11', 'pan13', 'pan15', 'pan17', 'pan18')])
+completed$PANAS_VA <- rowMeans(completed[,c('pan2', 'pan5', 'pan7', 'pan8', 'pan9',  'pan12', 'pan14', 'pan19', 'pan19', 'pan20')])
+
+# Rename .variables
+library('plyr')
+completed <- rename(completed,c('age'='Alter'))
+completed <- rename(completed,c('gender'='Geschlecht'))
+completed <- rename(completed,c('education'='Bildungsstand'))
+completed <- rename(completed,c('residence'='Land'))
+completed <- rename(completed,c('group'='Fragebogenversion'))
+completed <- rename(completed,c('groupNumber'='Fragebogenversion Numerisch'))
+
+completed <- rename(completed,c('sam1'='SAM Satisfaction'))
+completed <- rename(completed,c('sam2'='SAM Dominance'))
+completed <- rename(completed,c('sam3'='SAM Activation'))
+
+# Recode .variables
+library(car)
+completed$Geschlecht <- as.factor(completed$Geschlecht)
+completed$Geschlecht <- recode(completed$Geschlecht, "'f'='weiblich'; 'm'='männlich'; 'n'='Anderes'")
+completed$Bildungsstand <- as.ordered(completed$Bildungsstand)
+completed$Bildungsstand <- recode(completed$Bildungsstand, "
+                                  0='Kein Abschluss'; 
+                                  1='Hauptschul-/Volksschulabschlus'; 
+                                  2='Obligatorische Schule (Primar-/Real-/Sekundar-/ Bezirksschule)';
+                                  3='Berufslehre, Berufsschule, Berufsmittelschule';
+                                  4='Maturität / Abitur';
+                                  5='Fachhochschule';
+                                  6='Universität, Hochschule'")
+
+completed$Land <- as.factor(completed$Land)
+completed$Land <- recode(completed$Land, "'ch'='Schweiz'; 'de'='Deutschland'; 'at'='Österreich'; 'others'='Anderes'")
+completed$Fragebogenversion <- as.factor(completed$Fragebogenversion)
+completed$Fragebogenversion <- recode(completed$Fragebogenversion, "'ms'='Version MS'; 'sb1'='Version Schallberger 1'; 'sb2'='Version Schallberger 2'; 'gj'='Version GJ'")
+
+for(.variable in names(completed)[grepl('who',names(completed))]) {
+  completed[,.variable] <- as.ordered(completed[,.variable])
+  completed[,.variable] <- recode(completed[,.variable], "
+                                 0='Zu keinem Zeitpunkt'; 
+                                 1='Ab und zu'; 
+                                 2='Etwas weniger als die Hälfte der Zeit'; 
+                                 3='Etwas mehr als die Hälfte der Zeit'; 
+                                 4='Meistens'; 
+                                 5='Die ganze Zeit'")
+}
+
+for(.variable in names(completed)[grepl('swl',names(completed))]) {
+  completed[,.variable] <- as.ordered(completed[,.variable])
+  completed[,.variable] <- recode(completed[,.variable], "
+                                 1='trifft überhaupt nicht zu'; 
+                                 2='trifft nicht zu'; 
+                                 3='trifft eher nicht zu'; 
+                                 4='teils / teils'; 
+                                 5='trifft eher zu';
+                                 6='trifft zu';
+                                 7='trifft vollständig zu';
+                                 ")
+}
+
+for(.variable in names(completed)[grepl('pan',names(completed))]) {
+  completed[,.variable] <- as.ordered(completed[,.variable])
+  completed[,.variable] <- recode(completed[,.variable], "
+                                 1='gar nicht'; 
+                                 2='ein bisschen'; 
+                                 3='einigermassen'; 
+                                 4='erheblich'; 
+                                 5='äusserst';
+                                 ")
+}
+
+# Remove some unnecessary meta data
+completed.skinny <- subset(completed, select = -c(visit_token, visitor_token, ip, user_agent, referrer, landing_page, referring_domain, search_keyword, browser, os, device_type, screen_height, screen_width, country, region, city, postal_code, latitude, longitude, utm_source, utm_medium, utm_term, utm_content, utm_campaign))
+
 # Export data
-write.csv(completed, file = 'output/201804111738_recoded.csv', row.names = F)
+write.csv(completed.skinny, file = 'output/201804111738_recoded.csv', row.names = F)
 library('foreign')
-write.dta(completed, file = 'output/201804111738_recoded.dta')
-
-
+write.dta(completed.skinny, file = 'output/201804111738_recoded.dta')
+write.foreign(completed.skinny, datafile='output/201804111738_recoded.txt', codefile='output/201804111738_recoded.sps', package="SPSS")
+library(xlsx)
+write.xlsx2(completed.skinny, "output/201804111738_recoded.xlsx", row.names = F)
